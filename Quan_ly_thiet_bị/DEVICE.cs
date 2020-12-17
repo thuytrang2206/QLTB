@@ -24,7 +24,7 @@ namespace Quan_ly_thiet_bị
         public string FullCode { get; set; }
         public string ScortCode { get; set; }
         public Nullable<bool> IsUsing { get; set; }
-        public Nullable<int> DeviceGroup { get; set; }
+        public string DeviceGroup { get; set; }
         public string DeviceName { get; set; }
         public string Model { get; set; }
         public string Serial { get; set; }

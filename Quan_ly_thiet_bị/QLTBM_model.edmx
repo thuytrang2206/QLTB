@@ -13,7 +13,7 @@
           <Property Name="FullCode" Type="nvarchar" MaxLength="50" />
           <Property Name="ScortCode" Type="nvarchar" MaxLength="50" />
           <Property Name="IsUsing" Type="bit" />
-          <Property Name="DeviceGroup" Type="int" />
+          <Property Name="DeviceGroup" Type="nvarchar" MaxLength="50" />
           <Property Name="DeviceName" Type="nvarchar" MaxLength="50" />
           <Property Name="Model" Type="nvarchar" MaxLength="50" />
           <Property Name="Serial" Type="nvarchar" MaxLength="50" />
@@ -65,7 +65,7 @@
           <Property Name="PASSWORD" Type="nvarchar" MaxLength="50" />
           <Property Name="ID_RULE" Type="varchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_DEVICE_GROUP_DEVICE">
+        <Association Name="FK_DEVICE_GROUP_DEVICE1">
           <End Role="GROUP_DEVICE" Type="Self.GROUP_DEVICE" Multiplicity="0..1" />
           <End Role="DEVICE" Type="Self.DEVICE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -73,11 +73,11 @@
               <PropertyRef Name="ID_GROUP" />
             </Principal>
             <Dependent Role="DEVICE">
-              <PropertyRef Name="Model" />
+              <PropertyRef Name="DeviceGroup" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DEVICE_USER">
+        <Association Name="FK_DEVICE_USER1">
           <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
           <End Role="DEVICE" Type="Self.DEVICE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -85,7 +85,7 @@
               <PropertyRef Name="ID_USER" />
             </Principal>
             <Dependent Role="DEVICE">
-              <PropertyRef Name="Serial" />
+              <PropertyRef Name="Creator" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -119,11 +119,11 @@
           <EntitySet Name="HISTORY" EntityType="Self.HISTORY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RULE" EntityType="Self.RULE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_DEVICE_GROUP_DEVICE" Association="Self.FK_DEVICE_GROUP_DEVICE">
+          <AssociationSet Name="FK_DEVICE_GROUP_DEVICE1" Association="Self.FK_DEVICE_GROUP_DEVICE1">
             <End Role="GROUP_DEVICE" EntitySet="GROUP_DEVICE" />
             <End Role="DEVICE" EntitySet="DEVICE" />
           </AssociationSet>
-          <AssociationSet Name="FK_DEVICE_USER" Association="Self.FK_DEVICE_USER">
+          <AssociationSet Name="FK_DEVICE_USER1" Association="Self.FK_DEVICE_USER1">
             <End Role="USER" EntitySet="USER" />
             <End Role="DEVICE" EntitySet="DEVICE" />
           </AssociationSet>
@@ -149,7 +149,7 @@
           <Property Name="FullCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ScortCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsUsing" Type="Boolean" />
-          <Property Name="DeviceGroup" Type="Int32" />
+          <Property Name="DeviceGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DeviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Serial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -164,8 +164,8 @@
           <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Image1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Image2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="GROUP_DEVICE" Relationship="Self.FK_DEVICE_GROUP_DEVICE" FromRole="DEVICE" ToRole="GROUP_DEVICE" />
-          <NavigationProperty Name="USER" Relationship="Self.FK_DEVICE_USER" FromRole="DEVICE" ToRole="USER" />
+          <NavigationProperty Name="GROUP_DEVICE" Relationship="Self.FK_DEVICE_GROUP_DEVICE1" FromRole="DEVICE" ToRole="GROUP_DEVICE" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_DEVICE_USER1" FromRole="DEVICE" ToRole="USER" />
           <NavigationProperty Name="HISTORies" Relationship="Self.FK_HISTORY_DEVICE" FromRole="DEVICE" ToRole="HISTORY" />
         </EntityType>
         <EntityType Name="GROUP_DEVICE">
@@ -174,7 +174,7 @@
           </Key>
           <Property Name="ID_GROUP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DEVICEs" Relationship="Self.FK_DEVICE_GROUP_DEVICE" FromRole="GROUP_DEVICE" ToRole="DEVICE" />
+          <NavigationProperty Name="DEVICEs" Relationship="Self.FK_DEVICE_GROUP_DEVICE1" FromRole="GROUP_DEVICE" ToRole="DEVICE" />
         </EntityType>
         <EntityType Name="HISTORY">
           <Key>
@@ -206,10 +206,10 @@
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ID_RULE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DEVICEs" Relationship="Self.FK_DEVICE_USER" FromRole="USER" ToRole="DEVICE" />
+          <NavigationProperty Name="DEVICEs" Relationship="Self.FK_DEVICE_USER1" FromRole="USER" ToRole="DEVICE" />
           <NavigationProperty Name="RULE" Relationship="Self.FK_USER_RULE" FromRole="USER" ToRole="RULE" />
         </EntityType>
-        <Association Name="FK_DEVICE_GROUP_DEVICE">
+        <Association Name="FK_DEVICE_GROUP_DEVICE1">
           <End Role="GROUP_DEVICE" Type="Self.GROUP_DEVICE" Multiplicity="0..1" />
           <End Role="DEVICE" Type="Self.DEVICE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -217,11 +217,11 @@
               <PropertyRef Name="ID_GROUP" />
             </Principal>
             <Dependent Role="DEVICE">
-              <PropertyRef Name="Model" />
+              <PropertyRef Name="DeviceGroup" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DEVICE_USER">
+        <Association Name="FK_DEVICE_USER1">
           <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
           <End Role="DEVICE" Type="Self.DEVICE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -229,7 +229,7 @@
               <PropertyRef Name="ID_USER" />
             </Principal>
             <Dependent Role="DEVICE">
-              <PropertyRef Name="Serial" />
+              <PropertyRef Name="Creator" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -263,11 +263,11 @@
           <EntitySet Name="HISTORies" EntityType="Self.HISTORY" />
           <EntitySet Name="RULEs" EntityType="Self.RULE" />
           <EntitySet Name="USERs" EntityType="Self.USER" />
-          <AssociationSet Name="FK_DEVICE_GROUP_DEVICE" Association="Self.FK_DEVICE_GROUP_DEVICE">
+          <AssociationSet Name="FK_DEVICE_GROUP_DEVICE1" Association="Self.FK_DEVICE_GROUP_DEVICE1">
             <End Role="GROUP_DEVICE" EntitySet="GROUP_DEVICE" />
             <End Role="DEVICE" EntitySet="DEVICEs" />
           </AssociationSet>
-          <AssociationSet Name="FK_DEVICE_USER" Association="Self.FK_DEVICE_USER">
+          <AssociationSet Name="FK_DEVICE_USER1" Association="Self.FK_DEVICE_USER1">
             <End Role="USER" EntitySet="USERs" />
             <End Role="DEVICE" EntitySet="DEVICEs" />
           </AssociationSet>

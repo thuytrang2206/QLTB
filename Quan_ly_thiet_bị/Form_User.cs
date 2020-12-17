@@ -15,6 +15,23 @@ namespace Quan_ly_thiet_bị
         public Form_User()
         {
             InitializeComponent();
+            txtId.Visible = false;
+            txtUser_Login.Visible = false;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
