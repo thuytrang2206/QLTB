@@ -14,29 +14,55 @@ namespace Quan_ly_thiet_bị
     {
         Manager_deviceEntities db = new Manager_deviceEntities();
         DEVICE dev = new DEVICE();
- 
+        HISTORY his = new HISTORY();
+        TaskType task;
         public FormEditDevice(string name)
         {
             InitializeComponent();
             txt_User_Login.Text = name;
             txt_User_Login.Visible = false;
         }
+        private List<GROUP_DEVICE> listgr;
 
         private void FormEditDevice_Load(object sender, EventArgs e)
         {
-            txtId.Visible = false;
-            txtId.Text = Id;
-            txtName.Text = DeviceName;
-            txtModel.Text = Model;
-            txtSerial.Text = Serial;
-            txtVendor.Text = VendorName;
-            txtPurpose.Text = Purpose;
-            txtQty.Text = Qty+"";
-            txtUser.Text = Creator;
-            txtRemark.Text = Remark;
-            cbbIsUsing.Text = IsUsing+"";
-            cmbGroup.Text = DeviceGroup;
+            try
+            {
+                listgr = db.GROUP_DEVICE.ToList();
+                foreach (var item in listgr)
+                {
+                    cmbGroup.Items.Add(item.NAME);
+                    if (DeviceGroup == item.ID_GROUP)
+                    {
+                        cmbGroup.Text = item.NAME;
+                    }
+                }
+                txtId.Visible = false;
+                txtId.Text = Id;
+                txtName.Text = DeviceName;
+                txtModel.Text = Model;
+                txtSerial.Text = Serial;
+                txtVendor.Text = VendorName;
+                txtPurpose.Text = Purpose;
+                txtQty.Text = Qty + "";
+                txtUser.Text = Creator;
+                if (IsUsing == true)
+                {
+                    checkBox1.Text = IsUsing + "";
+                }
+                else
+                {
+                    checkBox1.Checked = false;
+                }
+                
+                txtUser.Text = Creator;
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.ToString());
+            }
         }
+
         public string Id { get; set; }
         public string FullCode { get; set; }
         public string ScortCode { get; set; }
@@ -70,8 +96,27 @@ namespace Quan_ly_thiet_bị
                 dev = db.DEVICEs.Find(id);
                 dev.DeviceName = txtName.Text;
                 dev.VendorName = txtVendor.Text;
-                dev.IsUsing = bool.Parse(cbbIsUsing.Text);
+                dev.IsUsing = checkBox1.Checked;
                 dev.Creator = txt_User_Login.Text;
+                dev.DeviceGroup = listgr[cmbGroup.SelectedIndex].ID_GROUP;
+                dev.Remark = txtRemark.Text;
+                task = TaskType.Update;
+                var Id_history = Guid.NewGuid().ToString();
+                his.ID_HISTORY = Id_history;
+                his.ID_DEVICE = dev.Id;
+                his.UPDATE_CHECK = dev.DateMaintenance;
+                his.ID_USER = dev.Creator;
+                his.STATUS = (int)task;
+                his.NOTE = txtRemark.Text;
+                his.QUANTITY = int.Parse(txtQty.Text);
+                int count = Qty.Value - his.QUANTITY.Value;
+                if (dev.Qty >= his.QUANTITY)
+                {
+                    dev.Qty = count;
+                }
+
+                db.HISTORies.Add(his);
+                
                 db.SaveChanges();
                 Close();
             }
@@ -80,27 +125,11 @@ namespace Quan_ly_thiet_bị
                 Console.Write(ex.ToString());
             }
         }
-
+        
         void Close()
         {
             FormEditDevice frme = new FormEditDevice(txt_User_Login.Text);
             this.Hide();
-           
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-        //    FormEditDevice frme = new FormEditDevice(txt_User_Login.Text);
-        //    frme.FormClosed += new FormClosedEventHandler(FormEditDevice_FormClosed);
-        //    this.Hide();
-
-        }
-        private void FormEditDevice_FormClosed(object sender, FormClosedEventArgs e)
-        {
-        //    Form2 frm2 = new Form2(txt_User_Login.Text);
-            
-        //    this.Show();
-        //    FormEditDevice frme = new FormEditDevice(txt_User_Login.Text);
-        //    frme.Close();
         }
     }
 }

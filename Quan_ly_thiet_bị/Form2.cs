@@ -30,6 +30,7 @@ namespace Quan_ly_thiet_bị
         }
         private void Form2_Load(object sender, EventArgs e)
         {
+            this.IsMdiContainer = true;
             dtgvdevice.DataSource = LoadRecord(pageNumber, numberRecord);
         }
         
@@ -71,7 +72,7 @@ namespace Quan_ly_thiet_bị
         }
         int pageNumber = 1;
         int numberRecord = 5;
-        List<DEVICE> LoadRecord(int page,int recordNum)
+        public List<DEVICE> LoadRecord(int page,int recordNum)
         {
             List<DEVICE> resulf = new List<DEVICE>();
             resulf = db.DEVICEs.OrderBy(a=>a.Id).Skip((page - 1) * recordNum).Take(recordNum).ToList();
@@ -105,6 +106,7 @@ namespace Quan_ly_thiet_bị
             if (user.ID_RULE == "R001")
             {
                 FormEditDevice frmedit = new FormEditDevice(label2.Text);
+    
                 frmedit.Id = dtgvdevice.CurrentRow.Cells["Id"].Value.ToString();
                 frmedit.DeviceName = dtgvdevice.CurrentRow.Cells["DeviceName"].Value.ToString();
                 frmedit.Model = dtgvdevice.CurrentRow.Cells["Model"].Value.ToString();
@@ -124,6 +126,13 @@ namespace Quan_ly_thiet_bị
             }
             
         }
-        FormEditDevice frmeditd = (FormEditDevice)Application.OpenForms["FormEditDevice"];
+
+        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        // FormEditDevice frmeditd = (FormEditDevice)Application.OpenForms["FormEditDevice"];
+
     }
 }

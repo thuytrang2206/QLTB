@@ -15,6 +15,8 @@ namespace Quan_ly_thiet_bị
         Manager_deviceEntities db = new Manager_deviceEntities();
         DEVICE dev = new DEVICE();
         BindingSource binds = new BindingSource();
+        HISTORY his = new HISTORY();
+        TaskType task;
         public Form_Device(string Name)
         {
             InitializeComponent();
@@ -67,6 +69,15 @@ namespace Quan_ly_thiet_bị
                 dev.DeviceGroup = listgr[cmbGroup.SelectedIndex].ID_GROUP;
                 dev.DateMaintenance = DateTime.Parse(dateTimeplan.Value.ToString());
                 db.DEVICEs.Add(dev);
+                task = TaskType.New;
+                var Id_history = Guid.NewGuid().ToString();
+                his.ID_HISTORY = Id_history;
+                his.ID_DEVICE = dev.Id;
+                his.UPDATE_CHECK = dev.DateMaintenance;
+                his.ID_USER = dev.Creator;
+                his.STATUS = (int)task;
+                his.QUANTITY = dev.Qty;
+                db.HISTORies.Add(his);
                 db.SaveChanges();
                 Load_Data();
                 Clear();

@@ -49,9 +49,8 @@
             this.txt_User_Login = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbGroup = new System.Windows.Forms.ComboBox();
-            this.cbbIsUsing = new System.Windows.Forms.ComboBox();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -222,19 +221,9 @@
             this.cmbGroup.Size = new System.Drawing.Size(121, 21);
             this.cmbGroup.TabIndex = 21;
             // 
-            // cbbIsUsing
-            // 
-            this.cbbIsUsing.FormattingEnabled = true;
-            this.cbbIsUsing.Items.AddRange(new object[] {
-            "false",
-            "true"});
-            this.cbbIsUsing.Location = new System.Drawing.Point(155, 179);
-            this.cbbIsUsing.Name = "cbbIsUsing";
-            this.cbbIsUsing.Size = new System.Drawing.Size(121, 21);
-            this.cbbIsUsing.TabIndex = 22;
-            // 
             // btnEdit
             // 
+            this.btnEdit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnEdit.Location = new System.Drawing.Point(530, 354);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
@@ -243,24 +232,25 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // button1
+            // checkBox1
             // 
-            this.button1.Location = new System.Drawing.Point(474, 197);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(155, 183);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(48, 17);
+            this.checkBox1.TabIndex = 24;
+            this.checkBox1.Text = "True";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // FormEditDevice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 386);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.cbbIsUsing);
             this.Controls.Add(this.cmbGroup);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txt_User_Login);
@@ -284,7 +274,6 @@
             this.Controls.Add(this.label1);
             this.Name = "FormEditDevice";
             this.Text = "FormEditDevice";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormEditDevice_FormClosed);
             this.Load += new System.EventHandler(this.FormEditDevice_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -314,8 +303,7 @@
         private System.Windows.Forms.TextBox txt_User_Login;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cmbGroup;
-        private System.Windows.Forms.ComboBox cbbIsUsing;
         private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

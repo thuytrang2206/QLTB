@@ -40,10 +40,10 @@
             this.historyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dtgvdevice = new System.Windows.Forms.DataGridView();
-            this.btnPrevious = new System.Windows.Forms.Button();
-            this.btnNext = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvdevice)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -74,7 +74,7 @@
             this.toolsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(663, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(713, 24);
             this.menuStrip1.TabIndex = 14;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -93,35 +93,35 @@
             // deviceGroupToolStripMenuItem
             // 
             this.deviceGroupToolStripMenuItem.Name = "deviceGroupToolStripMenuItem";
-            this.deviceGroupToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deviceGroupToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.deviceGroupToolStripMenuItem.Text = "Device Group";
             this.deviceGroupToolStripMenuItem.Click += new System.EventHandler(this.deviceGroupToolStripMenuItem_Click);
             // 
             // deviceToolStripMenuItem
             // 
             this.deviceToolStripMenuItem.Name = "deviceToolStripMenuItem";
-            this.deviceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deviceToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.deviceToolStripMenuItem.Text = "Device";
             this.deviceToolStripMenuItem.Click += new System.EventHandler(this.deviceToolStripMenuItem_Click);
             // 
             // userToolStripMenuItem
             // 
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.userToolStripMenuItem.Text = "User";
             this.userToolStripMenuItem.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
             // 
             // rulesToolStripMenuItem
             // 
             this.rulesToolStripMenuItem.Name = "rulesToolStripMenuItem";
-            this.rulesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rulesToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.rulesToolStripMenuItem.Text = "Rules";
             this.rulesToolStripMenuItem.Click += new System.EventHandler(this.rulesToolStripMenuItem_Click);
             // 
             // historyToolStripMenuItem
             // 
             this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
-            this.historyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.historyToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.historyToolStripMenuItem.Text = "History";
             this.historyToolStripMenuItem.Click += new System.EventHandler(this.historyToolStripMenuItem_Click);
             // 
@@ -140,6 +140,20 @@
             this.dtgvdevice.Size = new System.Drawing.Size(639, 194);
             this.dtgvdevice.TabIndex = 15;
             this.dtgvdevice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(95, 26);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // btnPrevious
             // 
@@ -161,25 +175,11 @@
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(95, 26);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(663, 295);
+            this.ClientSize = new System.Drawing.Size(713, 314);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.dtgvdevice);
@@ -189,6 +189,7 @@
             this.IsMdiContainer = true;
             this.Name = "Form2";
             this.Text = "Form2";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
             this.Load += new System.EventHandler(this.Form2_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
