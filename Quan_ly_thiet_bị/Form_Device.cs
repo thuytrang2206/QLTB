@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
 namespace Quan_ly_thiet_bị
 {
     public partial class Form_Device : Form
@@ -16,6 +16,7 @@ namespace Quan_ly_thiet_bị
         DEVICE dev = new DEVICE();
         BindingSource binds = new BindingSource();
         HISTORY his = new HISTORY();
+        USER user = new USER();
         TaskType task;
         public Form_Device(string Name)
         {
@@ -24,6 +25,7 @@ namespace Quan_ly_thiet_bị
             txt_User_Login.Visible = false;
             txtId.Visible = false;
             Load_Data();
+            Check_user();
         }
         void Load_Data()
         {
@@ -98,12 +100,64 @@ namespace Quan_ly_thiet_bị
         {
 
         }
-
+        struct DataParameter
+        {
+            public List<DEVICE> listdevice;
+            public string FileName { get; set; }
+        }
+        DataParameter _inputParamater;
         private void btnExport_file_Click(object sender, EventArgs e)
         {
+            if (backgroundWorker1.IsBusy)
+                return;
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "CSV|*.csv", ValidateNames = true })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    binds.DataSource = db.DEVICEs.ToList();
+                    _inputParamater.listdevice = binds.DataSource as List<DEVICE>;
+                    _inputParamater.FileName = sfd.FileName;
+                    progressBar.Minimum = 0;
+                    progressBar.Value = 0;
+                    backgroundWorker1.RunWorkerAsync(_inputParamater);
+                }
+            }
 
         }
+       
+    
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            List<DEVICE> list = ((DataParameter)e.Argument).listdevice;
+            string fileName = ((DataParameter)e.Argument).FileName;
+            int index = 1;
+            int process = list.Count();
+            using (StreamWriter sw = new StreamWriter(new FileStream(fileName, FileMode.Create), Encoding.UTF8))
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("ID_DEVICE,NAME,UPDATETIME,DATEPLAN,ID_GROUP,ID_USER");
+                foreach (DEVICE d in list)
+                {
+                    if (!backgroundWorker1.CancellationPending)
+                    {
+                        backgroundWorker1.ReportProgress(index++ * 100 / process);
+                        sb.AppendLine(string.Format("{0},{1},{2},{3},{4},{5}", d.Id));
+                    }
+                }
+                sw.Write(sb.ToString());
+            }
+        }
 
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //Thread.Sleep(100);
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar.Value = e.ProgressPercentage;
+            progressBar.Update();
+        }
         private void Form_Device_Load(object sender, EventArgs e)
         {
             listgr = db.GROUP_DEVICE.ToList();
@@ -136,6 +190,16 @@ namespace Quan_ly_thiet_bị
             //{
             //    Console.Write(ex.ToString());
             //}
+        }
+        void Check_user()
+        {
+            string id = txt_User_Login.Text;
+            user = db.USERs.Where(x => x.ID_USER == id).FirstOrDefault();
+            if (user.ID_RULE == "R002")
+            {
+                groupBox1.Visible = false;
+
+            }
         }
     }
 }

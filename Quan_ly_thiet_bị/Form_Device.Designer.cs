@@ -42,7 +42,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnExport_file = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.cmbGroup = new System.Windows.Forms.ComboBox();
             this.dateTimeplan = new System.Windows.Forms.DateTimePicker();
@@ -59,7 +58,8 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtgviewdevice = new System.Windows.Forms.DataGridView();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgviewdevice)).BeginInit();
@@ -67,6 +67,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.progressBar);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
@@ -80,7 +81,6 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnExport_file);
             this.groupBox1.Controls.Add(this.btnDel);
-            this.groupBox1.Controls.Add(this.btnEdit);
             this.groupBox1.Controls.Add(this.btnAdd);
             this.groupBox1.Controls.Add(this.cmbGroup);
             this.groupBox1.Controls.Add(this.dateTimeplan);
@@ -95,7 +95,7 @@
             this.groupBox1.Controls.Add(this.txtserial);
             this.groupBox1.Controls.Add(this.txtModel);
             this.groupBox1.Controls.Add(this.txtName);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(21, 271);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(845, 242);
             this.groupBox1.TabIndex = 0;
@@ -203,7 +203,7 @@
             // 
             // btnExport_file
             // 
-            this.btnExport_file.Location = new System.Drawing.Point(258, 202);
+            this.btnExport_file.Location = new System.Drawing.Point(193, 202);
             this.btnExport_file.Name = "btnExport_file";
             this.btnExport_file.Size = new System.Drawing.Size(75, 23);
             this.btnExport_file.TabIndex = 23;
@@ -213,23 +213,13 @@
             // 
             // btnDel
             // 
-            this.btnDel.Location = new System.Drawing.Point(168, 202);
+            this.btnDel.Location = new System.Drawing.Point(112, 202);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 23);
             this.btnDel.TabIndex = 22;
             this.btnDel.Text = "Xóa";
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(87, 202);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnEdit.TabIndex = 21;
-            this.btnEdit.Text = "Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd
             // 
@@ -294,14 +284,14 @@
             // 
             // txtCreator
             // 
-            this.txtCreator.Location = new System.Drawing.Point(309, 63);
+            this.txtCreator.Location = new System.Drawing.Point(309, 60);
             this.txtCreator.Name = "txtCreator";
             this.txtCreator.Size = new System.Drawing.Size(104, 20);
             this.txtCreator.TabIndex = 6;
             // 
             // txtPurpose
             // 
-            this.txtPurpose.Location = new System.Drawing.Point(309, 37);
+            this.txtPurpose.Location = new System.Drawing.Point(309, 30);
             this.txtPurpose.Name = "txtPurpose";
             this.txtPurpose.Size = new System.Drawing.Size(104, 20);
             this.txtPurpose.TabIndex = 5;
@@ -337,7 +327,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dtgviewdevice);
-            this.groupBox2.Location = new System.Drawing.Point(12, 260);
+            this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(845, 253);
             this.groupBox2.TabIndex = 1;
@@ -352,12 +342,17 @@
             this.dtgviewdevice.Size = new System.Drawing.Size(830, 228);
             this.dtgviewdevice.TabIndex = 0;
             // 
-            // textBox5
+            // backgroundWorker1
             // 
-            this.textBox5.Location = new System.Drawing.Point(261, 49);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(104, 20);
-            this.textBox5.TabIndex = 4;
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(274, 202);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(411, 23);
+            this.progressBar.TabIndex = 36;
             // 
             // Form_Device
             // 
@@ -366,7 +361,6 @@
             this.ClientSize = new System.Drawing.Size(869, 525);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.textBox5);
             this.Name = "Form_Device";
             this.Text = "Form_Device";
             this.Load += new System.EventHandler(this.Form_Device_Load);
@@ -375,7 +369,6 @@
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgviewdevice)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -392,7 +385,6 @@
         private System.Windows.Forms.TextBox txtModel;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox txt_User_Login;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label label12;
@@ -408,10 +400,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnExport_file;
         private System.Windows.Forms.Button btnDel;
-        private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ComboBox cmbGroup;
         private System.Windows.Forms.DateTimePicker dateTimeplan;
         private System.Windows.Forms.DataGridView dtgviewdevice;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

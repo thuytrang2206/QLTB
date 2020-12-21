@@ -99,6 +99,12 @@
     <Compile Include="Form_History.Designer.cs">
       <DependentUpon>Form_History.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Repair.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Repair.Designer.cs">
+      <DependentUpon>Form_Repair.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Rules.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_History.resx">
       <DependentUpon>Form_History.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Repair.resx">
+      <DependentUpon>Form_Repair.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Rules.resx">
       <DependentUpon>Form_Rules.cs</DependentUpon>

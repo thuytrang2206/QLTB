@@ -15,25 +15,17 @@ namespace Quan_ly_thiet_bị
         Manager_deviceEntities db = new Manager_deviceEntities();
         DEVICE dev = new DEVICE();
         BindingSource binds = new BindingSource();
+     
         public Form2(string strname)
         {
             InitializeComponent();
             Form1 frm1 = new Form1();
             frm1.Hide();
             label2.Text = strname;
-        }
-        void Load_data()
-        {
-            var list = from d in db.DEVICEs select new { d.Id, d.DeviceName, d.Model, d.Serial, d.VendorName, d.Qty };
-            binds.DataSource = list.ToList();
+            binds.DataSource= LoadRecord(pageNumber, numberRecord);
             dtgvdevice.DataSource = binds;
         }
-        private void Form2_Load(object sender, EventArgs e)
-        {
-            this.IsMdiContainer = true;
-            dtgvdevice.DataSource = LoadRecord(pageNumber, numberRecord);
-        }
-        
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int selectIndex = e.RowIndex;
@@ -75,8 +67,9 @@ namespace Quan_ly_thiet_bị
         public List<DEVICE> LoadRecord(int page,int recordNum)
         {
             List<DEVICE> resulf = new List<DEVICE>();
-            resulf = db.DEVICEs.OrderBy(a=>a.Id).Skip((page - 1) * recordNum).Take(recordNum).ToList();
+            resulf = db.DEVICEs.OrderBy(a => a.Id).Skip((page - 1) * recordNum).Take(recordNum).ToList();
             return resulf;
+
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
@@ -118,7 +111,8 @@ namespace Quan_ly_thiet_bị
                 frmedit.Remark = dtgvdevice.CurrentRow.Cells["Remark"].Value.ToString();
                 frmedit.DeviceGroup = dtgvdevice.CurrentRow.Cells["DeviceGroup"].Value.ToString();
                 frmedit.IsUsing = bool.Parse(dtgvdevice.CurrentRow.Cells["IsUsing"].Value.ToString());
-                frmedit.Show();
+                frmedit.DateMaintenance = DateTime.Parse(dtgvdevice.CurrentRow.Cells["DateMaintenance"].Value.ToString());
+                frmedit.ShowDialog();
             }
             else
             {
@@ -126,10 +120,26 @@ namespace Quan_ly_thiet_bị
             }
             
         }
-
+     
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void toolsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string id = label2.Text;
+            user = db.USERs.Where(x => x.ID_USER == id).FirstOrDefault();
+            if (user.ID_RULE == "R001")
+            {
+                Form_Repair frm_repair = new Form_Repair();
+                frm_repair.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Bạn không được cấp quyền!");
+            }
+
         }
 
         // FormEditDevice frmeditd = (FormEditDevice)Application.OpenForms["FormEditDevice"];

@@ -25,7 +25,7 @@ namespace Quan_ly_thiet_bị
 
         private void Form_History_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

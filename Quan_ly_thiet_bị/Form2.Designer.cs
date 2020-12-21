@@ -52,18 +52,18 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(567, 9);
+            this.label2.Location = new System.Drawing.Point(769, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 13;
             this.label2.Text = "label2";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(511, 9);
+            this.label1.Location = new System.Drawing.Point(708, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 12;
             this.label1.Text = "Account:";
             // 
@@ -74,7 +74,8 @@
             this.toolsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(713, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(832, 24);
             this.menuStrip1.TabIndex = 14;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -128,16 +129,17 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
-            this.toolsToolStripMenuItem.Text = "Tools";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.toolsToolStripMenuItem.Text = "Bảo dưỡng";
+            this.toolsToolStripMenuItem.Click += new System.EventHandler(this.toolsToolStripMenuItem_Click);
             // 
             // dtgvdevice
             // 
             this.dtgvdevice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvdevice.ContextMenuStrip = this.contextMenuStrip1;
-            this.dtgvdevice.Location = new System.Drawing.Point(12, 46);
+            this.dtgvdevice.Location = new System.Drawing.Point(14, 46);
             this.dtgvdevice.Name = "dtgvdevice";
-            this.dtgvdevice.Size = new System.Drawing.Size(639, 194);
+            this.dtgvdevice.Size = new System.Drawing.Size(796, 194);
             this.dtgvdevice.TabIndex = 15;
             this.dtgvdevice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -157,9 +159,9 @@
             // 
             // btnPrevious
             // 
-            this.btnPrevious.Location = new System.Drawing.Point(495, 263);
+            this.btnPrevious.Location = new System.Drawing.Point(628, 267);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(75, 23);
+            this.btnPrevious.Size = new System.Drawing.Size(87, 23);
             this.btnPrevious.TabIndex = 16;
             this.btnPrevious.Text = "Trở về";
             this.btnPrevious.UseVisualStyleBackColor = true;
@@ -167,9 +169,9 @@
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(576, 263);
+            this.btnNext.Location = new System.Drawing.Point(723, 267);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(75, 23);
+            this.btnNext.Size = new System.Drawing.Size(87, 23);
             this.btnNext.TabIndex = 17;
             this.btnNext.Text = "Tiếp";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -177,20 +179,21 @@
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(713, 314);
+            this.ClientSize = new System.Drawing.Size(832, 314);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.dtgvdevice);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
-            this.IsMdiContainer = true;
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.Firebrick;
             this.Name = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
-            this.Load += new System.EventHandler(this.Form2_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvdevice)).EndInit();
@@ -211,11 +214,11 @@
         private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rulesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dtgvdevice;
         private System.Windows.Forms.ToolStripMenuItem historyToolStripMenuItem;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        public System.Windows.Forms.DataGridView dtgvdevice;
     }
 }

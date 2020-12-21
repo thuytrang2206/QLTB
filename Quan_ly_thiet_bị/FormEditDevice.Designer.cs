@@ -51,6 +51,8 @@
             this.cmbGroup = new System.Windows.Forms.ComboBox();
             this.btnEdit = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.datetimerepair = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -216,7 +218,7 @@
             // cmbGroup
             // 
             this.cmbGroup.FormattingEnabled = true;
-            this.cmbGroup.Location = new System.Drawing.Point(345, 26);
+            this.cmbGroup.Location = new System.Drawing.Point(365, 26);
             this.cmbGroup.Name = "cmbGroup";
             this.cmbGroup.Size = new System.Drawing.Size(121, 21);
             this.cmbGroup.TabIndex = 21;
@@ -244,11 +246,30 @@
             this.checkBox1.Text = "True";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(276, 125);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(82, 13);
+            this.label11.TabIndex = 25;
+            this.label11.Text = "Ngày sửa chữa:";
+            // 
+            // datetimerepair
+            // 
+            this.datetimerepair.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.datetimerepair.Location = new System.Drawing.Point(365, 121);
+            this.datetimerepair.Name = "datetimerepair";
+            this.datetimerepair.Size = new System.Drawing.Size(101, 20);
+            this.datetimerepair.TabIndex = 26;
+            // 
             // FormEditDevice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 386);
+            this.Controls.Add(this.datetimerepair);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.cmbGroup);
@@ -305,5 +326,7 @@
         private System.Windows.Forms.ComboBox cmbGroup;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DateTimePicker datetimerepair;
     }
 }
