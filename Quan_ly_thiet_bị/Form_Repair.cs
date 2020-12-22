@@ -17,9 +17,11 @@ namespace Quan_ly_thiet_bị
         HISTORY his = new HISTORY();
         USER user = new USER();
         TaskType task;
-        public Form_Repair()
+        public Form_Repair(string name)
         {
             InitializeComponent();
+            txt_User_Login.Text = name;
+            txt_User_Login.Visible = false;
         }
         
         List<DEVICE> listdevice;
@@ -39,7 +41,6 @@ namespace Quan_ly_thiet_bị
                 var id = Guid.NewGuid().ToString();
                 his.ID_HISTORY = id;
                 his.ID_DEVICE = listdevice[cbbId_Device.SelectedIndex].Id;
-             
                 txtName.Text= listdevice[cbbId_Device.SelectedIndex].DeviceName;
                 his.UPDATE_CHECK = DateTime.Parse(dateTimerepair.Value.ToString());
                 his.NOTE = txtNote.Text;
@@ -53,8 +54,19 @@ namespace Quan_ly_thiet_bị
                     his.INFOCHECK = 0;
                 }
                 his.QUANTITY = int.Parse(txtQty.Text);
+                int count = dev.Qty.Value- his.QUANTITY.Value ;
+                if (dev.Qty >= his.QUANTITY)
+                {
+                    dev.Qty = count;
+                }
+                else
+                {
+                    MessageBox.Show("Bạn đã nhập quá số lượng thiết bị sửa!");
+                }
+                his.ID_USER = txt_User_Login.Text;
                 db.HISTORies.Add(his);
                 db.SaveChanges();
+                this.Hide();
             }
             catch(Exception ex)
             {

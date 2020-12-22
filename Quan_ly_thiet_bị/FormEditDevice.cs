@@ -113,16 +113,6 @@ namespace Quan_ly_thiet_bị
                 his.NOTE = txtRemark.Text;
                 his.QUANTITY = int.Parse(txtQty.Text);
                 his.UPDATE_CHECK = dev.Updatetime;
-                int count = Qty.Value - his.QUANTITY.Value;
-                if (dev.Qty >= his.QUANTITY)
-                {
-                    dev.Qty = count;
-                }
-                else
-                {
-                    MessageBox.Show("Bạn đã nhập quá số lượng thiết bị sửa!");
-                }
-  
                 db.HISTORies.Add(his);
                 db.SaveChanges();
                 Close();
@@ -133,7 +123,6 @@ namespace Quan_ly_thiet_bị
             }
         }
         
-        
         void Close()
         {
             try
@@ -141,9 +130,11 @@ namespace Quan_ly_thiet_bị
                 FormEditDevice frme = new FormEditDevice(txt_User_Login.Text);
                 //Form2 frm2 = (Form2)Application.OpenForms["Form2"];
                 Form2 frm2 = new Form2(txt_User_Login.Text);
-                frm2.dtgvdevice.DataSource = frm2.LoadRecord(pageNumber, numberRecord);
-                frm2.dtgvdevice.Update();
                 frm2.Refresh();
+                //frm2.dtgvdevice.DataSource = frm2.LoadRecord(pageNumber, numberRecord);
+                frm2.dtgvdevice.Update();
+                frm2.TopLevel=false;
+                frm2.Parent= this;
                 this.Hide();
             }
             catch(Exception ex)

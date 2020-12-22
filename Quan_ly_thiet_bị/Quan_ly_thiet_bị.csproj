@@ -117,11 +117,22 @@
     <Compile Include="Form_User.Designer.cs">
       <DependentUpon>Form_User.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_user_.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_user_.Designer.cs">
+      <DependentUpon>Form_user_.cs</DependentUpon>
+    </Compile>
     <Compile Include="GROUP_DEVICE.cs">
       <DependentUpon>QLTBM_model.tt</DependentUpon>
     </Compile>
     <Compile Include="HISTORY.cs">
       <DependentUpon>QLTBM_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Manager_deviceDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Manager_deviceDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -174,6 +185,9 @@
     <EmbeddedResource Include="Form_User.resx">
       <DependentUpon>Form_User.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_user_.resx">
+      <DependentUpon>Form_user_.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -183,6 +197,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Manager_deviceDataSet.xsc">
+      <DependentUpon>Manager_deviceDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Manager_deviceDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Manager_deviceDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Manager_deviceDataSet.xss">
+      <DependentUpon>Manager_deviceDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

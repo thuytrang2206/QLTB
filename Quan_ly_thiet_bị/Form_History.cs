@@ -27,5 +27,24 @@ namespace Quan_ly_thiet_bị
         {
             
         }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime date = dateTimePicker1.Value.Date;
+            var list_date = from d in db.HISTORies where (date == d.UPDATE_CHECK) select new { d.ID_HISTORY, d.ID_DEVICE, d.UPDATE_CHECK, d.INFOCHECK, d.NOTE, d.QUANTITY, d.STATUS, d.ID_USER };
+            binds.DataSource = list_date.ToList();
+            dtgviewhistory.DataSource = binds;
+        }
+        void Load_search(string textBox1 = "")
+        {
+            var list = from d in db.HISTORies where (d.ID_DEVICE.Contains(textBox1)) select new { d.ID_HISTORY, d.ID_DEVICE, d.UPDATE_CHECK, d.INFOCHECK, d.NOTE, d.QUANTITY, d.STATUS, d.ID_USER };
+            binds.DataSource = list.ToList();
+            dtgviewhistory.DataSource = binds;
+        }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+            Load_search(textBox1.Text.Trim());
+        }
     }
 }

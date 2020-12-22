@@ -44,15 +44,20 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
+            this.manager_deviceDataSet = new Quan_ly_thiet_bị.Manager_deviceDataSet();
+            this.dEVICEBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dEVICETableAdapter = new Quan_ly_thiet_bị.Manager_deviceDataSetTableAdapters.DEVICETableAdapter();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvdevice)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.manager_deviceDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dEVICEBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(769, 9);
+            this.label2.Location = new System.Drawing.Point(706, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 13;
@@ -61,7 +66,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(708, 9);
+            this.label1.Location = new System.Drawing.Point(646, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 12;
@@ -75,7 +80,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(832, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(759, 24);
             this.menuStrip1.TabIndex = 14;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -137,9 +142,9 @@
             // 
             this.dtgvdevice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvdevice.ContextMenuStrip = this.contextMenuStrip1;
-            this.dtgvdevice.Location = new System.Drawing.Point(14, 46);
+            this.dtgvdevice.Location = new System.Drawing.Point(13, 45);
             this.dtgvdevice.Name = "dtgvdevice";
-            this.dtgvdevice.Size = new System.Drawing.Size(796, 194);
+            this.dtgvdevice.Size = new System.Drawing.Size(735, 194);
             this.dtgvdevice.TabIndex = 15;
             this.dtgvdevice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -159,7 +164,7 @@
             // 
             // btnPrevious
             // 
-            this.btnPrevious.Location = new System.Drawing.Point(628, 267);
+            this.btnPrevious.Location = new System.Drawing.Point(554, 262);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(87, 23);
             this.btnPrevious.TabIndex = 16;
@@ -169,7 +174,7 @@
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(723, 267);
+            this.btnNext.Location = new System.Drawing.Point(649, 262);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(87, 23);
             this.btnNext.TabIndex = 17;
@@ -177,11 +182,25 @@
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
+            // manager_deviceDataSet
+            // 
+            this.manager_deviceDataSet.DataSetName = "Manager_deviceDataSet";
+            this.manager_deviceDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dEVICEBindingSource
+            // 
+            this.dEVICEBindingSource.DataMember = "DEVICE";
+            this.dEVICEBindingSource.DataSource = this.manager_deviceDataSet;
+            // 
+            // dEVICETableAdapter
+            // 
+            this.dEVICETableAdapter.ClearBeforeFill = true;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(832, 314);
+            this.ClientSize = new System.Drawing.Size(759, 314);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.dtgvdevice);
@@ -198,6 +217,8 @@
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvdevice)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.manager_deviceDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dEVICEBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,5 +241,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         public System.Windows.Forms.DataGridView dtgvdevice;
+        private Manager_deviceDataSet manager_deviceDataSet;
+        private System.Windows.Forms.BindingSource dEVICEBindingSource;
+        private Manager_deviceDataSetTableAdapters.DEVICETableAdapter dEVICETableAdapter;
     }
 }

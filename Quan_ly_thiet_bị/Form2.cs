@@ -22,8 +22,24 @@ namespace Quan_ly_thiet_bị
             Form1 frm1 = new Form1();
             frm1.Hide();
             label2.Text = strname;
-            binds.DataSource= LoadRecord(pageNumber, numberRecord);
+            binds.DataSource = LoadRecord(pageNumber, numberRecord);
             dtgvdevice.DataSource = binds;
+            dtgvdevice.Columns["Id"].Visible = false;
+            dtgvdevice.Columns["FullCode"].Visible = false;
+            dtgvdevice.Columns["ScortCode"].Visible = false;
+            dtgvdevice.Columns["Updater"].Visible = false;
+            dtgvdevice.Columns["Remark"].Visible = false;
+            dtgvdevice.Columns["Image1"].Visible = false;
+            dtgvdevice.Columns["Image2"].Visible = false;
+            dtgvdevice.Columns["DeviceGroup"].Visible = false;
+            dtgvdevice.Columns["Creator"].Visible = false;
+            dtgvdevice.Columns["GROUP_DEVICE"].Visible = false;
+            dtgvdevice.Columns["USER"].Visible = false;
+            dtgvdevice.Columns["HISTORies"].Visible = false;
+            dtgvdevice.Columns["Qty"].Visible = false;
+            dtgvdevice.Columns["DateMaintenance"].Visible = false;
+            dtgvdevice.Columns["Updatetime"].Visible = false;
+       
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -47,13 +63,13 @@ namespace Quan_ly_thiet_bị
 
         private void userToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form_User frm_d = new Form_User();
-            frm_d.ShowDialog();
+            Form_user_ frmuser = new Form_user_(label2.Text);
+            frmuser.ShowDialog();
         }
 
         private void rulesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form_Rules frm_d = new Form_Rules();
+            Form_Rules frm_d = new Form_Rules(label2.Text);
             frm_d.ShowDialog();
         }
 
@@ -69,12 +85,11 @@ namespace Quan_ly_thiet_bị
             List<DEVICE> resulf = new List<DEVICE>();
             resulf = db.DEVICEs.OrderBy(a => a.Id).Skip((page - 1) * recordNum).Take(recordNum).ToList();
             return resulf;
-
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
-            if (pageNumber-1> 0)
+            if (pageNumber - 1 > 0)
             {
                 pageNumber--;
                 dtgvdevice.DataSource = LoadRecord(pageNumber, numberRecord);
@@ -85,11 +100,12 @@ namespace Quan_ly_thiet_bị
         {
             int totalRecord = 0;
             totalRecord = db.DEVICEs.Count();
-            if (pageNumber-1<totalRecord/numberRecord)
+            if (pageNumber - 1 < totalRecord / numberRecord)
             {
                 pageNumber++;
                 dtgvdevice.DataSource = LoadRecord(pageNumber, numberRecord);
             }
+
         }
         USER user = new USER();
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
@@ -132,7 +148,7 @@ namespace Quan_ly_thiet_bị
             user = db.USERs.Where(x => x.ID_USER == id).FirstOrDefault();
             if (user.ID_RULE == "R001")
             {
-                Form_Repair frm_repair = new Form_Repair();
+                Form_Repair frm_repair = new Form_Repair(label2.Text);
                 frm_repair.ShowDialog();
             }
             else
@@ -141,6 +157,7 @@ namespace Quan_ly_thiet_bị
             }
 
         }
+      
 
         // FormEditDevice frmeditd = (FormEditDevice)Application.OpenForms["FormEditDevice"];
 

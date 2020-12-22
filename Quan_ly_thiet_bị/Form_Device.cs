@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
+
 namespace Quan_ly_thiet_bị
 {
     public partial class Form_Device : Form
@@ -24,7 +26,7 @@ namespace Quan_ly_thiet_bị
             txt_User_Login.Text = Name;
             txt_User_Login.Visible = false;
             txtId.Visible = false;
-            Load_Data();
+            
             Check_user();
         }
         void Load_Data()
@@ -124,9 +126,8 @@ namespace Quan_ly_thiet_bị
             }
 
         }
-       
-    
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+
+        private void backgroundWorker1_DoWork_1(object sender, DoWorkEventArgs e)
         {
             List<DEVICE> list = ((DataParameter)e.Argument).listdevice;
             string fileName = ((DataParameter)e.Argument).FileName;
@@ -135,31 +136,33 @@ namespace Quan_ly_thiet_bị
             using (StreamWriter sw = new StreamWriter(new FileStream(fileName, FileMode.Create), Encoding.UTF8))
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine("ID_DEVICE,NAME,UPDATETIME,DATEPLAN,ID_GROUP,ID_USER");
+                sb.AppendLine("Id,DeviceName");
                 foreach (DEVICE d in list)
                 {
                     if (!backgroundWorker1.CancellationPending)
                     {
                         backgroundWorker1.ReportProgress(index++ * 100 / process);
-                        sb.AppendLine(string.Format("{0},{1},{2},{3},{4},{5}", d.Id));
+                        sb.AppendLine(string.Format("{0},{1}", d.Id,d.DeviceName));
                     }
                 }
                 sw.Write(sb.ToString());
             }
         }
 
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            //Thread.Sleep(100);
-        }
-
-        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void backgroundWorker1_ProgressChanged_1(object sender, ProgressChangedEventArgs e)
         {
             progressBar.Value = e.ProgressPercentage;
             progressBar.Update();
         }
+
+        private void backgroundWorker1_RunWorkerCompleted_1(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Thread.Sleep(100);
+        }
+       
         private void Form_Device_Load(object sender, EventArgs e)
         {
+            Load_Data();
             listgr = db.GROUP_DEVICE.ToList();
             foreach (var item in listgr)
             {
@@ -169,7 +172,7 @@ namespace Quan_ly_thiet_bị
         private List<GROUP_DEVICE> listgr;
         void Load_gr(string groupID)
         {
-            var listd = from d in db.DEVICEs where (d.DeviceGroup.Contains(groupID)) select new { d.Id, d.DeviceName, d.Model, d.Serial, d.VendorName, d.Qty, d.Remark, d.Image1, d.Image2, d.DeviceGroup };
+            var listd = from d in db.DEVICEs where (d.DeviceGroup.Contains(groupID)) select new {  d.DeviceName, d.Model, d.Serial, d.VendorName, d.Qty, d.DateMaintenance, d.Remark, d.Image1, d.Image2, d.DeviceGroup };
             binds.DataSource = listd.ToList();
             dtgviewdevice.DataSource = binds;
 
@@ -200,6 +203,24 @@ namespace Quan_ly_thiet_bị
                 groupBox1.Visible = false;
 
             }
+        }
+        void Load_search(string txtSearch = "")
+        {
+            var list = from d in db.DEVICEs where (d.Id.Contains(txtSearch)) select new { d.DeviceName, d.Model, d.Serial, d.VendorName, d.Qty, d.DateMaintenance, d.Remark, d.Image1, d.Image2, d.DeviceGroup };
+            binds.DataSource = list.ToList();
+            dtgviewdevice.DataSource = binds;
+        }
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            Load_search(txtSearch.Text.Trim());
+        }
+
+        private void dateTimePicker1_ValueChanged_1(object sender, EventArgs e)
+        {
+            DateTime datetime = dateTimePicker1.Value.Date;
+            var list_date = from date in db.DEVICEs where (datetime == date.DateMaintenance) select new { date.DeviceName };
+            binds.DataSource = list_date.ToList();
+            dtgviewdevice.DataSource = binds;
         }
     }
 }
