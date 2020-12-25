@@ -15,6 +15,7 @@ namespace Quan_ly_thiet_bị
         Manager_deviceEntities db = new Manager_deviceEntities();
         BindingSource bind = new BindingSource();
         GROUP_DEVICE gd = new GROUP_DEVICE();
+        USER user = new USER();
         public Form_Group_device(string name)
         {
             InitializeComponent();
@@ -22,29 +23,30 @@ namespace Quan_ly_thiet_bị
             txtId.Visible = false;
             txt_User_Login.Visible = false;
             txt_User_Login.Text = name;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.Columns["ID_GROUP"].Visible = false;
+        }
+        void Check_user()
+        {
+            string id = txt_User_Login.Text;
+            user = db.USERs.Where(x => x.ID_USER == id).FirstOrDefault();
+            if (user.ID_RULE == "R002")
+            {
+                groupBox1.Visible = false;
+
+            }
         }
         void Load_Data()
         {
-            var list = from gr in db.GROUP_DEVICE select new { gr.ID_GROUP, gr.NAME };
+            var list = from gr in db.GROUP_DEVICE select new { gr.ID_GROUP,gr.NAME,gr.DESCIPTION };
             bind.DataSource = list.ToList();
             dataGridView1.DataSource = bind;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var id = Guid.NewGuid().ToString();
-                gd.ID_GROUP = id;
-                gd.NAME = txtName.Text;
-                db.GROUP_DEVICE.Add(gd);
-                db.SaveChanges();
-                Load_Data();
-            }
-            catch(Exception ex)
-            {
-                Console.Write(ex.ToString());
-            }
+            Form_add_group fag = new Form_add_group(this);
+            fag.Show();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -53,6 +55,21 @@ namespace Quan_ly_thiet_bị
         }
 
         private void btnDel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form_edit_group feg = new Form_edit_group();
+            feg.ID_GROUP = dataGridView1.CurrentRow.Cells["ID_GROUP"].Value.ToString();
+            feg.NAME = dataGridView1.CurrentRow.Cells["NAME"].Value.ToString();
+            feg.DESCIPTION = dataGridView1.CurrentRow.Cells["DESCIPTION"].Value.ToString();
+            feg.Show();
+            
+        }
+
+        private void Form_Group_device_Load(object sender, EventArgs e)
         {
 
         }

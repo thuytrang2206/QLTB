@@ -35,6 +35,7 @@
           </Key>
           <Property Name="ID_GROUP" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="DESCIPTION" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="HISTORY">
           <Key>
@@ -174,6 +175,7 @@
           </Key>
           <Property Name="ID_GROUP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DESCIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DEVICEs" Relationship="Self.FK_DEVICE_GROUP_DEVICE1" FromRole="GROUP_DEVICE" ToRole="DEVICE" />
         </EntityType>
         <EntityType Name="HISTORY">
@@ -316,6 +318,7 @@
               <MappingFragment StoreEntitySet="GROUP_DEVICE">
                 <ScalarProperty Name="ID_GROUP" ColumnName="ID_GROUP" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCIPTION" ColumnName="DESCIPTION" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

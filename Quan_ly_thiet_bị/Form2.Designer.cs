@@ -42,11 +42,11 @@
             this.dtgvdevice = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnPrevious = new System.Windows.Forms.Button();
-            this.btnNext = new System.Windows.Forms.Button();
             this.manager_deviceDataSet = new Quan_ly_thiet_bị.Manager_deviceDataSet();
             this.dEVICEBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dEVICETableAdapter = new Quan_ly_thiet_bị.Manager_deviceDataSetTableAdapters.DEVICETableAdapter();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnPrevious = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvdevice)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -92,8 +92,9 @@
             this.userToolStripMenuItem,
             this.rulesToolStripMenuItem,
             this.historyToolStripMenuItem});
+            this.fileToolStripMenuItem.Image = global::Quan_ly_thiet_bị.Properties.Resources.iconfinder_File_Files_Folder_Document_Doc_Data_33_3909352;
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // deviceGroupToolStripMenuItem
@@ -133,8 +134,9 @@
             // 
             // toolsToolStripMenuItem
             // 
+            this.toolsToolStripMenuItem.Image = global::Quan_ly_thiet_bị.Properties.Resources.iconfinder_tools_1287509;
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
             this.toolsToolStripMenuItem.Text = "Bảo dưỡng";
             this.toolsToolStripMenuItem.Click += new System.EventHandler(this.toolsToolStripMenuItem_Click);
             // 
@@ -142,9 +144,9 @@
             // 
             this.dtgvdevice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvdevice.ContextMenuStrip = this.contextMenuStrip1;
-            this.dtgvdevice.Location = new System.Drawing.Point(13, 45);
+            this.dtgvdevice.Location = new System.Drawing.Point(12, 47);
             this.dtgvdevice.Name = "dtgvdevice";
-            this.dtgvdevice.Size = new System.Drawing.Size(735, 194);
+            this.dtgvdevice.Size = new System.Drawing.Size(735, 209);
             this.dtgvdevice.TabIndex = 15;
             this.dtgvdevice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -162,26 +164,6 @@
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
-            // btnPrevious
-            // 
-            this.btnPrevious.Location = new System.Drawing.Point(554, 262);
-            this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(87, 23);
-            this.btnPrevious.TabIndex = 16;
-            this.btnPrevious.Text = "Trở về";
-            this.btnPrevious.UseVisualStyleBackColor = true;
-            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
-            // 
-            // btnNext
-            // 
-            this.btnNext.Location = new System.Drawing.Point(649, 262);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(87, 23);
-            this.btnNext.TabIndex = 17;
-            this.btnNext.Text = "Tiếp";
-            this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
             // manager_deviceDataSet
             // 
             this.manager_deviceDataSet.DataSetName = "Manager_deviceDataSet";
@@ -195,6 +177,31 @@
             // dEVICETableAdapter
             // 
             this.dEVICETableAdapter.ClearBeforeFill = true;
+            // 
+            // btnNext
+            // 
+            this.btnNext.Image = global::Quan_ly_thiet_bị.Properties.Resources.iconfinder_15_330404;
+            this.btnNext.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNext.Location = new System.Drawing.Point(649, 262);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(86, 28);
+            this.btnNext.TabIndex = 17;
+            this.btnNext.Text = "Tiếp tục     ";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrevious.Image = global::Quan_ly_thiet_bị.Properties.Resources.iconfinder_16_330403;
+            this.btnPrevious.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrevious.Location = new System.Drawing.Point(569, 262);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(74, 28);
+            this.btnPrevious.TabIndex = 16;
+            this.btnPrevious.Text = "    Trở về";
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
             // 
             // Form2
             // 
@@ -211,8 +218,9 @@
             this.ForeColor = System.Drawing.Color.Firebrick;
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form2";
+            this.Text = "form_main";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
+            this.Load += new System.EventHandler(this.Form2_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvdevice)).EndInit();

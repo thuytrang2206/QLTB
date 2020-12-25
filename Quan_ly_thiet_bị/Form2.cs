@@ -36,7 +36,7 @@ namespace Quan_ly_thiet_bị
             dtgvdevice.Columns["GROUP_DEVICE"].Visible = false;
             dtgvdevice.Columns["USER"].Visible = false;
             dtgvdevice.Columns["HISTORies"].Visible = false;
-            dtgvdevice.Columns["Qty"].Visible = false;
+            dtgvdevice.Columns["IsUsing"].Visible = false;
             dtgvdevice.Columns["DateMaintenance"].Visible = false;
             dtgvdevice.Columns["Updatetime"].Visible = false;
        
@@ -69,8 +69,8 @@ namespace Quan_ly_thiet_bị
 
         private void rulesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form_Rules frm_d = new Form_Rules(label2.Text);
-            frm_d.ShowDialog();
+            Form_Rules frm_rule = new Form_Rules(label2.Text);
+            frm_rule.ShowDialog();
         }
 
         private void historyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -83,7 +83,7 @@ namespace Quan_ly_thiet_bị
         public List<DEVICE> LoadRecord(int page,int recordNum)
         {
             List<DEVICE> resulf = new List<DEVICE>();
-            resulf = db.DEVICEs.OrderBy(a => a.Id).Skip((page - 1) * recordNum).Take(recordNum).ToList();
+            resulf = db.DEVICEs.Where(a=>a.IsUsing ==true).OrderBy(a => a.Id).Skip((page - 1) * recordNum).Take(recordNum).ToList();
             return resulf;
         }
 
@@ -114,6 +114,7 @@ namespace Quan_ly_thiet_bị
             user = db.USERs.Where(x => x.ID_USER == id).FirstOrDefault();
             if (user.ID_RULE == "R001")
             {
+
                 FormEditDevice frmedit = new FormEditDevice(label2.Text);
     
                 frmedit.Id = dtgvdevice.CurrentRow.Cells["Id"].Value.ToString();
@@ -157,7 +158,14 @@ namespace Quan_ly_thiet_bị
             }
 
         }
-      
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
+
 
         // FormEditDevice frmeditd = (FormEditDevice)Application.OpenForms["FormEditDevice"];
 

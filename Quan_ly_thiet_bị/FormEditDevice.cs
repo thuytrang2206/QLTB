@@ -103,6 +103,7 @@ namespace Quan_ly_thiet_bị
                 dev.DeviceGroup = listgr[cmbGroup.SelectedIndex].ID_GROUP;
                 dev.Remark = txtRemark.Text;
                 dev.Updatetime = DateTime.Parse(datetimerepair.Value.ToString());
+                dev.Qty = int.Parse(txtQty.Text);
                 task = TaskType.Update;
                 var Id_history = Guid.NewGuid().ToString();
                 his.ID_HISTORY = Id_history;
@@ -131,10 +132,8 @@ namespace Quan_ly_thiet_bị
                 //Form2 frm2 = (Form2)Application.OpenForms["Form2"];
                 Form2 frm2 = new Form2(txt_User_Login.Text);
                 frm2.Refresh();
-                //frm2.dtgvdevice.DataSource = frm2.LoadRecord(pageNumber, numberRecord);
+                frm2.LoadRecord(pageNumber, numberRecord);
                 frm2.dtgvdevice.Update();
-                frm2.TopLevel=false;
-                frm2.Parent= this;
                 this.Hide();
             }
             catch(Exception ex)

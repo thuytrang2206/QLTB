@@ -22,6 +22,7 @@ namespace Quan_ly_thiet_bị
     
         public string ID_GROUP { get; set; }
         public string NAME { get; set; }
+        public string DESCIPTION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DEVICE> DEVICEs { get; set; }

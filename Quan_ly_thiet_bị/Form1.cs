@@ -38,7 +38,7 @@ namespace Quan_ly_thiet_bị
             string password = getMD5(txtpass.Text);
             try
             {
-                if (db.USERs.Where(r => r.ID_USER == txtuser.Text && r.PASSWORD == password).Count() > 0)
+                if (db.USERs.Where(r => r.ID_USER == txtuser.Text && r.PASSWORD == password).FirstOrDefault() != null)
                 {
                     Form2 frm = new Form2(txtuser.Text);
                     this.Hide();

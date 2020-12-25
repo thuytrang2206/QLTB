@@ -15,6 +15,7 @@ namespace Quan_ly_thiet_bị
         Manager_deviceEntities db = new Manager_deviceEntities();
         BindingSource binds;
         RULE rule = new RULE();
+        USER user = new USER();
         public Form_Rules(string name)
         {
             InitializeComponent();
@@ -22,16 +23,16 @@ namespace Quan_ly_thiet_bị
             txt_User_Login.Text = name;
             binds = new BindingSource();
             Load_rule();
+            Check_user();
         }
 
         void Check_user()
         {
             string id = txt_User_Login.Text;
-            rule = db.RULEs.Where(x => x.ID_RULE == id).FirstOrDefault();
+            user = db.USERs.Where(x => x.ID_RULE == id).FirstOrDefault();
             if (rule.ID_RULE == "R002")
             {
                 groupBox1.Visible = false;
-
             }
         }
         void Load_rule()
