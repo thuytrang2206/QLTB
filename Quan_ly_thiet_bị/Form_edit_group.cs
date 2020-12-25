@@ -14,10 +14,12 @@ namespace Quan_ly_thiet_bị
     {
         Manager_deviceEntities db = new Manager_deviceEntities();
         GROUP_DEVICE gr = new GROUP_DEVICE();
-
-        public Form_edit_group()
+        BindingSource bind = new BindingSource();
+        Form_Group_device fm;
+        public Form_edit_group(Form_Group_device frmgd)
         {
             InitializeComponent();
+            this.fm = frmgd;
         }
 
         private void Form_edit_group_Load(object sender, EventArgs e)
@@ -34,10 +36,17 @@ namespace Quan_ly_thiet_bị
         {
             string id = ID_GROUP;
             gr = db.GROUP_DEVICE.Find(id);
-            txtName.Text = NAME;
-            txtdes.Text = DESCIPTION;
+            gr.NAME=txtName.Text;
+            gr.DESCIPTION=txtdes.Text;
             db.SaveChanges();
+            ReLoad_Data();
         }
-        void ReLoad_Data() { }
+        void ReLoad_Data()
+        {
+            var list = from g in db.GROUP_DEVICE select new {g.ID_GROUP, g.NAME, g.DESCIPTION };
+            bind.DataSource = list.ToList();
+            fm.dataGridView1.DataSource = bind;
+            this.Hide();
+        }
     }
 }

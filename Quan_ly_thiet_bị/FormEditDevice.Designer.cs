@@ -49,10 +49,10 @@
             this.txt_User_Login = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbGroup = new System.Windows.Forms.ComboBox();
-            this.btnEdit = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
             this.datetimerepair = new System.Windows.Forms.DateTimePicker();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -223,17 +223,6 @@
             this.cmbGroup.Size = new System.Drawing.Size(121, 21);
             this.cmbGroup.TabIndex = 21;
             // 
-            // btnEdit
-            // 
-            this.btnEdit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnEdit.Location = new System.Drawing.Point(530, 354);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnEdit.TabIndex = 23;
-            this.btnEdit.Text = "Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -262,6 +251,18 @@
             this.datetimerepair.Name = "datetimerepair";
             this.datetimerepair.Size = new System.Drawing.Size(101, 20);
             this.datetimerepair.TabIndex = 26;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnEdit.Image = global::Quan_ly_thiet_bị.Properties.Resources.iconfinder_89_Import_Down_Download_Save_1864210;
+            this.btnEdit.Location = new System.Drawing.Point(547, 348);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(47, 26);
+            this.btnEdit.TabIndex = 23;
+            this.btnEdit.Text = "    Save";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // FormEditDevice
             // 

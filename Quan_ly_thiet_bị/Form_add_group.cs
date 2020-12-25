@@ -33,7 +33,7 @@ namespace Quan_ly_thiet_bị
         }
         void Load()
         {
-            var list = from g in db.GROUP_DEVICE select new { g.NAME, g.DESCIPTION };
+            var list = from g in db.GROUP_DEVICE select new { g.ID_GROUP,g.NAME, g.DESCIPTION };
             bind.DataSource = list.ToList();
             fm.dataGridView1.DataSource = bind;
             this.Hide();

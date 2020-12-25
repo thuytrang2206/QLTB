@@ -16,11 +16,14 @@ namespace Quan_ly_thiet_bị
         DEVICE dev = new DEVICE();
         HISTORY his = new HISTORY();
         TaskType task;
-        public FormEditDevice(string name)
+        Form2 frm2;
+        BindingSource bind = new BindingSource();
+        public FormEditDevice(string name, Form2 form2)
         {
             InitializeComponent();
             txt_User_Login.Text = name;
             txt_User_Login.Visible = false;
+            this.frm2 = form2;
         }
         private List<GROUP_DEVICE> listgr;
 
@@ -123,17 +126,18 @@ namespace Quan_ly_thiet_bị
                 Console.Write(ex.ToString());
             }
         }
-        
+        public List<DEVICE> LoadRecord(int page, int recordNum)
+        {
+            List<DEVICE> resulf = new List<DEVICE>();
+            resulf = db.DEVICEs.Where(a => a.IsUsing == true).OrderBy(a => a.Id).Skip((page - 1) * recordNum).Take(recordNum).ToList();
+            return resulf;
+        }
         void Close()
         {
             try
             {
-                FormEditDevice frme = new FormEditDevice(txt_User_Login.Text);
-                //Form2 frm2 = (Form2)Application.OpenForms["Form2"];
-                Form2 frm2 = new Form2(txt_User_Login.Text);
-                frm2.Refresh();
-                frm2.LoadRecord(pageNumber, numberRecord);
-                frm2.dtgvdevice.Update();
+                bind.DataSource = LoadRecord(pageNumber, numberRecord);
+                frm2.dtgvdevice.DataSource = bind;
                 this.Hide();
             }
             catch(Exception ex)

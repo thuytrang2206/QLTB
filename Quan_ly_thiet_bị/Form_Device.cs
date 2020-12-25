@@ -20,14 +20,15 @@ namespace Quan_ly_thiet_bị
         HISTORY his = new HISTORY();
         USER user = new USER();
         TaskType task;
-        public Form_Device(string Name)
+        Form2 frm2;
+        public Form_Device(string Name, Form2 form2)
         {
             InitializeComponent();
             txt_User_Login.Text = Name;
             txt_User_Login.Visible = false;
             txtId.Visible = false;
-            
             Check_user();
+            this.frm2 = form2;
         }
         void Load_Data()
         {
@@ -105,10 +106,9 @@ namespace Quan_ly_thiet_bị
                     his.QUANTITY = dev.Qty;
                     db.HISTORies.Add(his);
                     db.SaveChanges();
-                    Load_Data();
+                    Load_Data_frmMain();
+                    //Load_Data();
                     Clear();
-                    Form_Device frmdevice = new Form_Device(txt_User_Login.Text);
-                    this.Hide();
                 }
 
             }
@@ -118,7 +118,19 @@ namespace Quan_ly_thiet_bị
             }
 
         }
-
+        public List<DEVICE> LoadRecord(int page, int recordNum)
+        {
+            List<DEVICE> resulf = new List<DEVICE>();
+            resulf = db.DEVICEs.Where(a => a.IsUsing == true).OrderBy(a => a.Id).Skip((page - 1) * recordNum).Take(recordNum).ToList();
+            return resulf;
+        }
+        int pageNumber = 1;
+        int numberRecord = 5;
+        void Load_Data_frmMain()
+        {
+            binds.DataSource = LoadRecord(pageNumber, numberRecord);
+            frm2.dtgvdevice.DataSource = binds;
+        }
         private void btnDel_Click(object sender, EventArgs e)
         {
             string id= dtgviewdevice.SelectedCells[0].OwningRow.Cells["Id"].Value.ToString();

@@ -57,7 +57,7 @@ namespace Quan_ly_thiet_bị
 
         private void deviceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form_Device frm_d = new Form_Device(label2.Text);
+            Form_Device frm_d = new Form_Device(label2.Text,this);
             frm_d.ShowDialog();
         }
 
@@ -115,7 +115,7 @@ namespace Quan_ly_thiet_bị
             if (user.ID_RULE == "R001")
             {
 
-                FormEditDevice frmedit = new FormEditDevice(label2.Text);
+                FormEditDevice frmedit = new FormEditDevice(label2.Text,this);
     
                 frmedit.Id = dtgvdevice.CurrentRow.Cells["Id"].Value.ToString();
                 frmedit.DeviceName = dtgvdevice.CurrentRow.Cells["DeviceName"].Value.ToString();

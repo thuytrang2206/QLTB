@@ -61,7 +61,7 @@ namespace Quan_ly_thiet_bị
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form_edit_group feg = new Form_edit_group();
+            Form_edit_group feg = new Form_edit_group(this);
             feg.ID_GROUP = dataGridView1.CurrentRow.Cells["ID_GROUP"].Value.ToString();
             feg.NAME = dataGridView1.CurrentRow.Cells["NAME"].Value.ToString();
             feg.DESCIPTION = dataGridView1.CurrentRow.Cells["DESCIPTION"].Value.ToString();

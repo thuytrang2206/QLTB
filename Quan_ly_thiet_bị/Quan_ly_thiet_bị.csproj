@@ -326,6 +326,11 @@
       <DependentUpon>QLTB_model.edmx</DependentUpon>
       <LastGenOutput>QLTB_model.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\iconfinder_backup_1712731.png" />
+    <None Include="Resources\iconfinder_backup_171273.png" />
+    <None Include="Resources\475334-backup-128.png" />
+    <None Include="Resources\iconfinder_89_Import_Down_Download_Save_18642102.png" />
+    <None Include="Resources\iconfinder_14_3304051.png" />
     <None Include="Resources\iconfinder_Add_Circle_Plus_Download_1343436 %281%291.png" />
     <None Include="Resources\iconfinder_89_Import_Down_Download_Save_18642101.png" />
     <None Include="Resources\iconfinder_89_Import_Down_Download_Save_1864210.png" />

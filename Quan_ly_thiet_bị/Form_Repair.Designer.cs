@@ -42,8 +42,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtQty = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.txt_User_Login = new System.Windows.Forms.TextBox();
+            this.btnAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -164,22 +164,24 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "Số lượng máy bảo dưỡng";
             // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(385, 283);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 15;
-            this.btnAdd.Text = "Save";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // txt_User_Login
             // 
             this.txt_User_Login.Location = new System.Drawing.Point(370, 26);
             this.txt_User_Login.Name = "txt_User_Login";
             this.txt_User_Login.Size = new System.Drawing.Size(100, 20);
             this.txt_User_Login.TabIndex = 16;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::Quan_ly_thiet_bị.Properties.Resources.iconfinder_backup_1712731;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(412, 274);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(58, 32);
+            this.btnAdd.TabIndex = 15;
+            this.btnAdd.Text = "      Save";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // Form_Repair
             // 
