@@ -39,14 +39,13 @@ namespace Quan_ly_thiet_bị
             dtgvdevice.Columns["IsUsing"].Visible = false;
             dtgvdevice.Columns["DateMaintenance"].Visible = false;
             dtgvdevice.Columns["Updatetime"].Visible = false;
-       
+            dtgvdevice.RowHeadersVisible = false;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int selectIndex = e.RowIndex;
             DataGridViewRow row = dtgvdevice.Rows[selectIndex];
-
         }
 
         private void deviceGroupToolStripMenuItem_Click(object sender, EventArgs e)
@@ -79,7 +78,7 @@ namespace Quan_ly_thiet_bị
             frm_d.ShowDialog();
         }
         int pageNumber = 1;
-        int numberRecord = 5;
+        int numberRecord = 10;
         public List<DEVICE> LoadRecord(int page,int recordNum)
         {
             List<DEVICE> resulf = new List<DEVICE>();
@@ -165,9 +164,6 @@ namespace Quan_ly_thiet_bị
         }
 
 
-
-
-        // FormEditDevice frmeditd = (FormEditDevice)Application.OpenForms["FormEditDevice"];
 
     }
 }

@@ -12,17 +12,12 @@ namespace Quan_ly_thiet_bị
     using System;
     using System.Collections.Generic;
     
-    public partial class HISTORY
+    public partial class sysdiagram
     {
-        public string ID_HISTORY { get; set; }
-        public string ID_DEVICE { get; set; }
-        public Nullable<System.DateTime> UPDATE_CHECK { get; set; }
-        public Nullable<int> INFOCHECK { get; set; }
-        public string NOTE { get; set; }
-        public Nullable<int> QUANTITY { get; set; }
-        public string STATUS { get; set; }
-        public string ID_USER { get; set; }
-    
-        public virtual DEVICE DEVICE { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

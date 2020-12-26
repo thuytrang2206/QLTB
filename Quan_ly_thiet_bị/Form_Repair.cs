@@ -44,7 +44,7 @@ namespace Quan_ly_thiet_bị
                 txtName.Text= listdevice[cbbId_Device.SelectedIndex].DeviceName;
                 his.UPDATE_CHECK = DateTime.Parse(dateTimerepair.Value.ToString());
                 his.NOTE = txtNote.Text;
-                his.STATUS =(int) task;
+                his.STATUS = TaskType.Repair.ToString() ;
                  if (checkBox1.Checked == true)
                 {
                     his.INFOCHECK = 1;
@@ -63,7 +63,13 @@ namespace Quan_ly_thiet_bị
                 {
                     MessageBox.Show("Bạn đã nhập quá số lượng thiết bị sửa!");
                 }
-                his.ID_USER = txt_User_Login.Text;
+               
+                var user = db.USERs.Where(u => u.ID_USER == txt_User_Login.Text).FirstOrDefault();
+                if(user!= null)
+                {
+                    string name = user.NAME;
+                    his.ID_USER = name ;
+                }
                 db.HISTORies.Add(his);
                 db.SaveChanges();
                 this.Hide();

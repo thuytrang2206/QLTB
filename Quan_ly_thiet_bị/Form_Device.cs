@@ -29,12 +29,13 @@ namespace Quan_ly_thiet_bị
             txtId.Visible = false;
             Check_user();
             this.frm2 = form2;
+            dtgviewdevice.RowHeadersVisible = false;
         }
         void Load_Data()
         {
             try
             {
-                var list = from d in db.DEVICEs where(d.IsUsing==true ) select new { d.Id, d.DeviceName, d.Model, d.Serial, d.VendorName, d.Qty, d.Remark, d.Image1,d.Image2,d.DeviceGroup};
+                var list = from d in db.DEVICEs where(d.IsUsing==true ) select new { d.DeviceName, d.Model, d.Serial, d.VendorName, d.Qty, d.Remark, d.Image1,d.Image2,d.DeviceGroup};
                 binds.DataSource = list.ToList();
                 dtgviewdevice.DataSource = binds;
             }
@@ -42,17 +43,6 @@ namespace Quan_ly_thiet_bị
             {
                 Console.Write(ex.ToString());
             }
-        }
-        void Clear()
-        {
-            txtName.Text = "";
-            txtModel.Text = "";
-            txtPurpose.Text = "";
-            txtQty.Text = "";
-            txtRemark.Text = "";
-            txtserial.Text = "";
-            txtUpdate.Text = "";
-            txtVendor.Text = "";
         }
   
         private bool check_data()
@@ -73,69 +63,23 @@ namespace Quan_ly_thiet_bị
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (txtName.Text==""||txtModel.Text==""||txtserial.Text==""||txtVendor.Text==""||txtUpdate.Text==""||txtRemark.Text==""||txtQty.Text==""||txtPurpose.Text==""||cmbGroup.Text==null)
-                {
-                    MessageBox.Show("Dữ liệu không được để trống");
-                }
-                else
-                {
-                    var id = Guid.NewGuid().ToString();
-                    dev.Id = id;
-                    dev.DeviceName = txtName.Text;
-                    dev.IsUsing = true;
-                    dev.Model = txtModel.Text;
-                    dev.Serial = txtserial.Text;
-                    dev.VendorName = txtVendor.Text;
-                    dev.Qty = int.Parse(txtQty.Text);
-                    dev.Creator = txt_User_Login.Text;
-                    dev.Remark = txtRemark.Text;
-                    dev.Purpose = txtPurpose.Text;
-                    dev.CreateDate = DateTime.Now;
-                    dev.DeviceGroup = listgr[cmbGroup.SelectedIndex].ID_GROUP;
-                    dev.DateMaintenance = DateTime.Parse(dateTimeplan.Value.ToString());
-                    db.DEVICEs.Add(dev);
-                    task = TaskType.New;
-                    var Id_history = Guid.NewGuid().ToString();
-                    his.ID_HISTORY = Id_history;
-                    his.ID_DEVICE = dev.Id;
-                    his.UPDATE_CHECK = dev.DateMaintenance;
-                    his.ID_USER = dev.Creator;
-                    his.STATUS = (int)task;
-                    his.QUANTITY = dev.Qty;
-                    db.HISTORies.Add(his);
-                    db.SaveChanges();
-                    Load_Data_frmMain();
-                    //Load_Data();
-                    Clear();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.ToString());
-            }
-
+            Form_add_device frmadd = new Form_add_device(txt_User_Login.Text, this,this.frm2);
+            frmadd.ShowDialog();
         }
-        public List<DEVICE> LoadRecord(int page, int recordNum)
-        {
-            List<DEVICE> resulf = new List<DEVICE>();
-            resulf = db.DEVICEs.Where(a => a.IsUsing == true).OrderBy(a => a.Id).Skip((page - 1) * recordNum).Take(recordNum).ToList();
-            return resulf;
-        }
-        int pageNumber = 1;
-        int numberRecord = 5;
-        void Load_Data_frmMain()
-        {
-            binds.DataSource = LoadRecord(pageNumber, numberRecord);
-            frm2.dtgvdevice.DataSource = binds;
-        }
+      
         private void btnDel_Click(object sender, EventArgs e)
         {
             string id= dtgviewdevice.SelectedCells[0].OwningRow.Cells["Id"].Value.ToString();
             dev = db.DEVICEs.Find(id);
             dev.IsUsing = false;
+            var Id_history = Guid.NewGuid().ToString();
+            his.ID_HISTORY = Id_history;
+            his.ID_DEVICE = dev.Id;
+            his.UPDATE_CHECK = dev.DateMaintenance;
+            his.ID_USER = dev.Creator;
+            his.STATUS = TaskType.Remove.ToString();
+            his.QUANTITY = dev.Qty;
+            db.HISTORies.Add(his);
             db.SaveChanges();
             Load_Data();
         }
@@ -161,7 +105,6 @@ namespace Quan_ly_thiet_bị
                     backgroundWorker1.RunWorkerAsync(_inputParamater);
                 }
             }
-
         }
 
         private void backgroundWorker1_DoWork_1(object sender, DoWorkEventArgs e)
@@ -200,11 +143,7 @@ namespace Quan_ly_thiet_bị
         private void Form_Device_Load(object sender, EventArgs e)
         {
             Load_Data();
-            listgr = db.GROUP_DEVICE.ToList();
-            foreach (var item in listgr)
-            {
-                cmbGroup.Items.Add(item.NAME);
-            }
+         
             listGroupDevices = db.GROUP_DEVICE.ToList();
 
             foreach (var groupDevice in listGroupDevices)
@@ -212,12 +151,12 @@ namespace Quan_ly_thiet_bị
                 cmbseach.Items.Add(groupDevice.NAME);
             }
         }
-        private List<GROUP_DEVICE> listgr;
+       
         void Load_gr(string groupID)
         {
             if (dev.IsUsing == true)
             {
-                var listd = from d in db.DEVICEs where (d.DeviceGroup.Contains(groupID)) select new { d.DeviceName, d.Model, d.Serial, d.VendorName, d.Qty, d.DateMaintenance, d.Remark, d.Image1, d.Image2, d.DeviceGroup };
+                var listd = from d in db.DEVICEs where (d.DeviceGroup.Contains(groupID)) select new { d.DeviceName, d.Model, d.Serial, d.VendorName, d.Qty, d.DateMaintenance, d.Remark, d.Image1, d.Image2 };
                 binds.DataSource = listd.ToList();
                 dtgviewdevice.DataSource = binds;
             }
@@ -226,18 +165,6 @@ namespace Quan_ly_thiet_bị
         private List<GROUP_DEVICE> listGroupDevices;
         private void cmbGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (cmbGroup.SelectedIndex != -1)
-            //    {
-            //        selectgroupID = listgr[cmbGroup.SelectedIndex].ID_GROUP;
-            //        Load_gr(selectgroupID);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.Write(ex.ToString());
-            //}
         }
         void Check_user()
         {
@@ -246,14 +173,11 @@ namespace Quan_ly_thiet_bị
             if (user.ID_RULE == "R002")
             {
                 groupBox1.Visible = false;
-
             }
         }
         void Load_search(string txtSearch = "")
         {
-            
-            var list = from d in db.DEVICEs where (d.Id.Contains(txtSearch) && d.IsUsing==true) select new { d.DeviceName, d.Model, d.Serial, d.VendorName, d.Qty, d.DateMaintenance, d.Remark, d.Image1, d.Image2, d.DeviceGroup };
-
+            var list = from d in db.DEVICEs where (d.Id.Contains(txtSearch) && d.IsUsing==true) select new { d.DeviceName, d.Model, d.Serial, d.VendorName, d.Qty, d.DateMaintenance, d.Remark, d.Image1, d.Image2};
             binds.DataSource = list.ToList();
             dtgviewdevice.DataSource = binds;
         }
@@ -271,7 +195,7 @@ namespace Quan_ly_thiet_bị
         }
         void Load_DataByGroupId(string groupID)
         {
-            var listd = from d in db.DEVICEs where (d.DeviceGroup.Contains(groupID) && d.IsUsing == true) select new { d.Id, d.DeviceName, d.Model, d.Serial, d.VendorName, d.Qty, d.Remark, d.Image1, d.Image2, d.DeviceGroup };
+            var listd = from d in db.DEVICEs where (d.DeviceGroup.Contains(groupID) && d.IsUsing == true) select new { d.DeviceName, d.Model, d.Serial, d.VendorName, d.Qty, d.Remark, d.Image1, d.Image2 };
             binds.DataSource = listd.ToList();
             dtgviewdevice.DataSource = binds;
         }

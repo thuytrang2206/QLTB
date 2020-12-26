@@ -57,7 +57,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(706, 9);
+            this.label2.Location = new System.Drawing.Point(681, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 13;
@@ -66,7 +66,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(646, 9);
+            this.label1.Location = new System.Drawing.Point(617, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 12;
@@ -80,7 +80,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(759, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(733, 24);
             this.menuStrip1.TabIndex = 14;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -146,7 +146,7 @@
             this.dtgvdevice.ContextMenuStrip = this.contextMenuStrip1;
             this.dtgvdevice.Location = new System.Drawing.Point(12, 47);
             this.dtgvdevice.Name = "dtgvdevice";
-            this.dtgvdevice.Size = new System.Drawing.Size(735, 209);
+            this.dtgvdevice.Size = new System.Drawing.Size(713, 270);
             this.dtgvdevice.TabIndex = 15;
             this.dtgvdevice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -182,7 +182,7 @@
             // 
             this.btnNext.Image = global::Quan_ly_thiet_bị.Properties.Resources.iconfinder_15_330404;
             this.btnNext.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNext.Location = new System.Drawing.Point(649, 262);
+            this.btnNext.Location = new System.Drawing.Point(639, 323);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(86, 28);
             this.btnNext.TabIndex = 17;
@@ -195,7 +195,7 @@
             this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrevious.Image = global::Quan_ly_thiet_bị.Properties.Resources.iconfinder_16_330403;
             this.btnPrevious.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrevious.Location = new System.Drawing.Point(569, 262);
+            this.btnPrevious.Location = new System.Drawing.Point(559, 323);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(74, 28);
             this.btnPrevious.TabIndex = 16;
@@ -207,7 +207,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(759, 314);
+            this.ClientSize = new System.Drawing.Size(733, 363);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.dtgvdevice);

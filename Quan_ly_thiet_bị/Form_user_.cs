@@ -44,64 +44,29 @@ namespace Quan_ly_thiet_bị
             binds.DataSource = listuser.ToList();
             dataGridView1.DataSource = binds;
         }
-        private string Matang()
-        {
-            string ma = "";
-            if (dataGridView1.RowCount < 0)
-            {
-                users.ID_USER = "U00001";
-            }
-            else
-            {
-                int k = int.Parse(dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value.ToString().Substring(1, 5));
-                k = k + 1;
-                ma = "U";
-                if (k < 10)
-                {
-                    ma = ma + "0000";
-                }
-                else if (k < 100)
-                {
-                    ma = ma + "000";
-                }
-                ma = ma + k.ToString();
-            }
-            return ma;
-        }
-        private string getMD5(string txt)
-        {
-            txt = txt_pass.Text;
-            string str = "";
-            Byte[] buffer = System.Text.Encoding.UTF8.GetBytes(txt);
-            System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
-            buffer = md5.ComputeHash(buffer);
-            foreach (Byte b in buffer)
-            {
-                str += b.ToString("X2");
-            }
-            return str;
-        }
+       
+       
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string password = txt_pass.Text;
-                string id = dataGridView1.SelectedCells[0].OwningRow.Cells["ID_USER"].Value.ToString();
-                users = db.USERs.Find(id);
-                users.NAME = txt_Name.Text;
-                users.PASSWORD = password;
-                users.ID_RULE = listrule[cmm_rule.SelectedIndex].ID_RULE;
-                db.SaveChanges();
-                Load_User();
-            }
-            catch(Exception ex)
-            {
-                Console.Write(ex.ToString());
-            }
+            //try
+            //{
+            //    string password = txt_pass.Text;
+            //    string id = dataGridView1.SelectedCells[0].OwningRow.Cells["ID_USER"].Value.ToString();
+            //    users = db.USERs.Find(id);
+            //    users.NAME = txt_Name.Text;
+            //    users.PASSWORD = password;
+            //    users.ID_RULE = listrule[cmm_rule.SelectedIndex].ID_RULE;
+            //    db.SaveChanges();
+            //    Load_User();
+            //}
+            //catch(Exception ex)
+            //{
+            //    Console.Write(ex.ToString());
+            //}
             
         }
 
@@ -109,39 +74,30 @@ namespace Quan_ly_thiet_bị
         {
             int selectIndex = e.RowIndex;
             DataGridViewRow row = dataGridView1.Rows[selectIndex];
-            txt_Name.Text = row.Cells[1].Value.ToString();
-            txt_pass.Text = row.Cells[2].Value.ToString();
-            cmm_rule.Text = row.Cells[3].Value.ToString();
+            //txt_Name.Text = row.Cells[1].Value.ToString();
+            //txt_pass.Text = row.Cells[2].Value.ToString();
+            //cmm_rule.Text = row.Cells[3].Value.ToString();
         }
         private void Form_user__Load(object sender, EventArgs e)
         {
-            listrule = db.RULEs.ToList();
-            foreach (var item in listrule)
-            {
-                cmm_rule.Items.Add(item.NAME);
-            }
+          
         }
-        void Add()
+       
+
+        private void btnAdd_user_Click_1(object sender, EventArgs e)
         {
-            try
-            {
-                string id = Matang();
-                users.ID_USER = id;
-                users.NAME = txt_Name.Text;
-                users.PASSWORD = getMD5(txt_pass.Text);
-                users.ID_RULE = listrule[cmm_rule.SelectedIndex].ID_RULE;
-                db.USERs.Add(users);
-                db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.ToString());
-            }
+            Form_add_user frm_add_user = new Form_add_user(this);
+            frm_add_user.Show();
         }
-        private void btnAdd_user_Click(object sender, EventArgs e)
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Add();
-            Load_User();
+            Form_edit_user feu = new Form_edit_user(this);
+            feu.ID_USER = dataGridView1.CurrentRow.Cells["ID_USER"].Value.ToString();
+            feu.NAME = dataGridView1.CurrentRow.Cells["NAME"].Value.ToString();
+            feu.PASSWORD = dataGridView1.CurrentRow.Cells["PASSWORD"].Value.ToString();
+            feu.ID_RULE = dataGridView1.CurrentRow.Cells["ID_RULE"].Value.ToString();
+            feu.Show();
         }
     }
 }

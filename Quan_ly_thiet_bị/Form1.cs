@@ -33,33 +33,11 @@ namespace Quan_ly_thiet_bị
             }
             return str;
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string password = getMD5(txtpass.Text);
-            try
-            {
-                if (db.USERs.Where(r => r.ID_USER == txtuser.Text && r.PASSWORD == password).FirstOrDefault() != null)
-                {
-                    Form2 frm = new Form2(txtuser.Text);
-                    this.Hide();
-                    frm.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("Login is not correct!");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.ToString());
-            }
-
-        }
         private void txtpass_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                button1.PerformClick();
+                btnLogin.PerformClick();
             }
         }
 
@@ -72,8 +50,40 @@ namespace Quan_ly_thiet_bị
         {
             if (e.KeyCode == Keys.Enter)
             {
-                button1_Click(sender, e);
+                btnLogin_Click(sender, e);
             }
+        }
+        USER user = new USER();
+        List<USER> listuser;
+        BindingSource bind = new BindingSource();
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            string password = getMD5(txtpass.Text);
+            try
+            {
+                var u = db.USERs.Where(r => r.NAME == txtName.Text && r.PASSWORD == password).FirstOrDefault();
+                if (u != null)
+                {
+                     txtUser.Text=u.ID_USER;
+
+                    Form2 frm = new Form2(txtUser.Text);
+                    this.Hide();
+                    frm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Login is not correct!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.ToString());
+            }
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

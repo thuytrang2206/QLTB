@@ -92,7 +92,7 @@ namespace Quan_ly_thiet_bị
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HISTORY> HISTORies { get; set; }
         int pageNumber = 1;
-        int numberRecord = 5;
+        int numberRecord = 10;
         private void btnEdit_Click(object sender, EventArgs e)
         {
             try
@@ -112,11 +112,16 @@ namespace Quan_ly_thiet_bị
                 his.ID_HISTORY = Id_history;
                 his.ID_DEVICE = dev.Id;
                 his.UPDATE_CHECK = dev.DateMaintenance;
-                his.ID_USER = dev.Creator;
-                his.STATUS = (int)task;
+                his.STATUS = TaskType.Update.ToString();
                 his.NOTE = txtRemark.Text;
                 his.QUANTITY = int.Parse(txtQty.Text);
                 his.UPDATE_CHECK = dev.Updatetime;
+                var user = db.USERs.Where(u => u.ID_USER == txt_User_Login.Text).FirstOrDefault();
+                if (user != null)
+                {
+                    string name = user.NAME;
+                    his.ID_USER = name;
+                }
                 db.HISTORies.Add(his);
                 db.SaveChanges();
                 Close();

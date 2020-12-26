@@ -29,6 +29,7 @@ namespace Quan_ly_thiet_bị
         public virtual DbSet<GROUP_DEVICE> GROUP_DEVICE { get; set; }
         public virtual DbSet<HISTORY> HISTORies { get; set; }
         public virtual DbSet<RULE> RULEs { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<USER> USERs { get; set; }
     }
 }

@@ -15,31 +15,31 @@ namespace Quan_ly_thiet_bị
         Manager_deviceEntities db = new Manager_deviceEntities();
         HISTORY his = new HISTORY();
         BindingSource binds = new BindingSource();
+     
         public Form_History()
         {
             InitializeComponent();
-            var list_history = from h in db.HISTORies select new { h.ID_HISTORY, h.ID_DEVICE,h.QUANTITY, h.INFOCHECK, h.NOTE, h.STATUS, h.UPDATE_CHECK, h.ID_USER };
+            var list_history = from h in db.HISTORies join d in db.DEVICEs on h.ID_DEVICE equals d.Id select new {DEVICE_NAME=d.DeviceName, h.QUANTITY, h.INFOCHECK, h.NOTE, h.STATUS, h.UPDATE_CHECK, h.ID_USER };
             binds.DataSource = list_history.ToList();
             dtgviewhistory.DataSource = binds;
-            
+
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             DateTime date = dateTimePicker1.Value.Date;
-            var list_date = from d in db.HISTORies where (date == d.UPDATE_CHECK) select new { d.ID_HISTORY, d.ID_DEVICE, d.UPDATE_CHECK, d.INFOCHECK, d.NOTE, d.QUANTITY, d.STATUS, d.ID_USER };
+            var list_date = from h in db.HISTORies join d in db.DEVICEs on h.ID_DEVICE equals d.Id where (date == h.UPDATE_CHECK) select new { DEVICE_NAME = d.DeviceName, h.QUANTITY, h.INFOCHECK, h.NOTE, h.STATUS, h.UPDATE_CHECK, h.ID_USER };
             binds.DataSource = list_date.ToList();
             dtgviewhistory.DataSource = binds;
         }
         void Load_search(string textBox1 = "")
         {
-            var list = from d in db.HISTORies where (d.ID_DEVICE.Contains(textBox1)) select new { d.ID_HISTORY, d.ID_DEVICE, d.UPDATE_CHECK, d.INFOCHECK, d.NOTE, d.QUANTITY, d.STATUS, d.ID_USER };
+            var list = from h in db.HISTORies join d in db.DEVICEs on h.ID_DEVICE equals d.Id where (d.DeviceName.Contains(textBox1) ) select new { DEVICE_NAME = d.DeviceName, h.QUANTITY, h.INFOCHECK, h.NOTE, h.STATUS, h.UPDATE_CHECK, h.ID_USER };
             binds.DataSource = list.ToList();
             dtgviewhistory.DataSource = binds;
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+        { 
             Load_search(textBox1.Text.Trim());
         }
     }

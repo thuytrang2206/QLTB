@@ -26,7 +26,7 @@
     <UpdateUrl>\\172.28.10.12\Share\18 IT\U36286%28trangpt%29\</UpdateUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -113,11 +113,23 @@
     <Compile Include="FormEditDevice.Designer.cs">
       <DependentUpon>FormEditDevice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_add_device.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_add_device.Designer.cs">
+      <DependentUpon>Form_add_device.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_add_group.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_add_group.Designer.cs">
       <DependentUpon>Form_add_group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_add_user.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_add_user.Designer.cs">
+      <DependentUpon>Form_add_user.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_Device.cs">
       <SubType>Form</SubType>
@@ -130,6 +142,12 @@
     </Compile>
     <Compile Include="Form_edit_group.Designer.cs">
       <DependentUpon>Form_edit_group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_edit_user.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_edit_user.Designer.cs">
+      <DependentUpon>Form_edit_user.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_Group_device.cs">
       <SubType>Form</SubType>
@@ -198,6 +216,9 @@
     <Compile Include="RULE.cs">
       <DependentUpon>QLTB_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>QLTB_model.tt</DependentUpon>
+    </Compile>
     <Compile Include="TaskType.cs" />
     <Compile Include="USER.cs">
       <DependentUpon>QLTB_model.tt</DependentUpon>
@@ -211,14 +232,23 @@
     <EmbeddedResource Include="FormEditDevice.resx">
       <DependentUpon>FormEditDevice.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_add_device.resx">
+      <DependentUpon>Form_add_device.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_add_group.resx">
       <DependentUpon>Form_add_group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_add_user.resx">
+      <DependentUpon>Form_add_user.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Device.resx">
       <DependentUpon>Form_Device.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_edit_group.resx">
       <DependentUpon>Form_edit_group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_edit_user.resx">
+      <DependentUpon>Form_edit_user.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Group_device.resx">
       <DependentUpon>Form_Group_device.cs</DependentUpon>
@@ -316,6 +346,23 @@
     <None Include="Resources\Login.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\iconfinder_backup_1712732.png" />
+    <None Include="Resources\iconfinder_89_Import_Down_Download_Save_18642103.png" />
+    <None Include="Resources\iconfinder_backup_1712731.png" />
+    <None Include="Resources\iconfinder_backup_171273.png" />
+    <None Include="Resources\475334-backup-128.png" />
+    <None Include="Resources\iconfinder_89_Import_Down_Download_Save_18642102.png" />
+    <None Include="Resources\iconfinder_14_3304051.png" />
+    <None Include="Resources\iconfinder_Add_Circle_Plus_Download_1343436 %281%291.png" />
+    <None Include="Resources\iconfinder_89_Import_Down_Download_Save_18642101.png" />
+    <None Include="Resources\iconfinder_89_Import_Down_Download_Save_1864210.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_backup_1712733.png" />
+    <None Include="Resources\iconfinder_89_Import_Down_Download_Save_18642104.png" />
+    <None Include="Resources\iconfinder_Add_Circle_Plus_Download_1343436 %281%292.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="QLTB_model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QLTB_model.edmx</DependentUpon>
@@ -326,14 +373,6 @@
       <DependentUpon>QLTB_model.edmx</DependentUpon>
       <LastGenOutput>QLTB_model.cs</LastGenOutput>
     </Content>
-    <None Include="Resources\iconfinder_backup_1712731.png" />
-    <None Include="Resources\iconfinder_backup_171273.png" />
-    <None Include="Resources\475334-backup-128.png" />
-    <None Include="Resources\iconfinder_89_Import_Down_Download_Save_18642102.png" />
-    <None Include="Resources\iconfinder_14_3304051.png" />
-    <None Include="Resources\iconfinder_Add_Circle_Plus_Download_1343436 %281%291.png" />
-    <None Include="Resources\iconfinder_89_Import_Down_Download_Save_18642101.png" />
-    <None Include="Resources\iconfinder_89_Import_Down_Download_Save_1864210.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

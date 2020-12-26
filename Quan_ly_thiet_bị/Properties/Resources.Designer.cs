@@ -173,6 +173,26 @@ namespace Quan_ly_thiet_bị.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_89_Import_Down_Download_Save_18642103 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_89_Import_Down_Download_Save_18642103", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_89_Import_Down_Download_Save_18642104 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_89_Import_Down_Download_Save_18642104", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconfinder_Add_Circle_Plus_Download_1343436 {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_Add_Circle_Plus_Download_1343436", resourceCulture);
@@ -203,6 +223,16 @@ namespace Quan_ly_thiet_bị.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_Add_Circle_Plus_Download_1343436__1_2 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_Add_Circle_Plus_Download_1343436 (1)2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconfinder_backup_171273 {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_backup_171273", resourceCulture);
@@ -216,6 +246,26 @@ namespace Quan_ly_thiet_bị.Properties {
         internal static System.Drawing.Bitmap iconfinder_backup_1712731 {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_backup_1712731", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_backup_1712732 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_backup_1712732", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_backup_1712733 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_backup_1712733", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

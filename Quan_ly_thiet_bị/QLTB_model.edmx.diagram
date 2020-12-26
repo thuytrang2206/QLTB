@@ -4,14 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cfacc25034fa41b183ba26083fe3b703" Name="Diagram1">
+      <Diagram DiagramId="8b132f5d0df0421cb917bb7d2ef5efca" Name="Diagram1">
         <EntityTypeShape EntityType="Manager_deviceModel.DEVICE" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="Manager_deviceModel.GROUP_DEVICE" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Manager_deviceModel.HISTORY" Width="1.5" PointX="7.5" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Manager_deviceModel.RULE" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Manager_deviceModel.sysdiagram" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Manager_deviceModel.USER" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <AssociationConnector Association="Manager_deviceModel.FK_DEVICE_GROUP_DEVICE1" ManuallyRouted="false" />
-        <AssociationConnector Association="Manager_deviceModel.FK_DEVICE_USER1" ManuallyRouted="false" />
+        <AssociationConnector Association="Manager_deviceModel.FK_DEVICE_GROUP_DEVICE" ManuallyRouted="false" />
+        <AssociationConnector Association="Manager_deviceModel.FK_DEVICE_USER" ManuallyRouted="false" />
         <AssociationConnector Association="Manager_deviceModel.FK_HISTORY_DEVICE" ManuallyRouted="false" />
         <AssociationConnector Association="Manager_deviceModel.FK_USER_RULE" ManuallyRouted="false" />
       </Diagram>
